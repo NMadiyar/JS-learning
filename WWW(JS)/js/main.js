@@ -188,15 +188,250 @@ console.log(matrix);
 //         continue;
 //     console.log(i);
 // }
+//
+//  var massiv = [2, 5, 6, 8, "strokaasd"];
+// for(var i = 0; i < massiv.length; i++){
+//
+//
+//     if(massiv[i]=="strokaasd")
+//         continue;
+//     massiv[i] *= 2;
+//
+//     console.log("Элементы массива " +(i +1)+ ":" + massiv[i]);
+//
+// }
 
- var massiv = [2, 5, 6, 8, "strokaasd"];
-for(var i = 0; i < massiv.length; i++){
 
+//9.Всплывающие окна
+//Всплывающие окна нельзя кастомизировать, чтобы их сделать, нужно отдельно прописать для них стили и добавить
+//действие при нажатии которого, будет появляться данное окно
+//Alert вызывает окно, которое показывает некоторую информацию
+// al = 1;
+// do{
+//     alert("What a weather");
+//     al++;
+// }while(al<=1);
+// //Confirm, в отличии от alert имеет 2 выбора ответа, отмена и ок, стили различаются в разных браузерах
+// //Так же из нее можно получать результать, true или false
+// var data=confirm("Are u at home?");
+// console.log(data);
+// if(data){
+//     alert("WP!");
+// } else{
+//     alert("BG!");
+// }
+//Prompt всплывающее окно с текстовым полем, возвращает значение которое было написано в поле. Если же выбрать отмена
+//то будет верно значение null. Prompt("Пишется вопрос", после скобки заранее подставленное значение)
+// var datap = prompt("How old are you?", 27);
+// console.log(datap);
+// if(datap===""){
+//     alert("Нельзя задать строку!")
+// }
+//
+// var persona=null;
+// if(confirm("Are u sure?")){
+//     persona = prompt("What is your name?");
+//     alert("Hello "+ persona);
+// } else{
+//     alert("You have pressed cancel");
+// }
 
-    if(massiv[i]=="strokaasd")
-        continue;
-    massiv[i] *= 2;
-
-    console.log("Элементы массива " +(i +1)+ ":" + massiv[i]);
-
+//10. Функции в языке JS
+//Функция создается так, function имя функции любое и скобки , в скобках передаются параметры и всегда фигурные скобки
+//Чтобы функция работала, ее нужно вызывать info(); сколько раз ее вызовешь, столько раз она будет работать
+//Параметры у функции имеет тип undefined - неопределено, поэтому можно задавать туда любые значения
+//Параметры у функции могут иметь любое название
+//Внутри функции можно создавать условия, циклы, свич кейсы, но нельзя создавать функцию внутри функции
+//Для того, чтобы функцию возвратила результат пишем return
+function info( word ){
+    console.log( word + " Hello");
 }
+function summa(a,b){
+    var res = a + b;
+    info(res);
+}
+
+summa(5, 10);
+
+// function summamassiva(arr){
+//     var sum = 0;
+//     for( var i = 0; i < arr.length; i++){
+//         sum += arr[i];
+//     }
+//     console.log(sum);
+// }
+
+function summamassiva(arr){
+    res = 0;
+    for(var i = 0; i < arr.length; i++){
+        res += arr[i];
+    }
+    return res;
+}
+var array = [5, 10, 20 ];
+var result = summamassiva(array);
+console.log("Rezultat "+result);
+
+//Так же существуют локальные и глобальные переменные
+//Локальная переменная создается внутри функции и действует только внутри нее
+//Глобальная переменная создается вне функции и работает как внутри функции, так и вне ее предела
+
+var gnum = 10;
+
+function lnum (){
+    var gnum = 20;
+    console.log(gnum);
+}
+lnum();
+console.log(gnum);
+
+//11.Обработчики событий
+//Проходим действие onclick, нельзя создавать каунтер внутри функции, т.к он постоянно перезаписывается и равняется 0
+//Мы передали в эту функцию this, здесь же дадим аттрибуду любое название (el)
+//метод innterHTML меняет внутри тега значение, т.е между <button>INNTER HTML(меняет здесь)</button>
+//el.onlick, el.name, el.id будут получать информацию из тега
+//el.style.background, el.style.color напрямую влияет на css свойства, можно менять стили
+//el.style.cssText можно прописать стили как в css, но при этом будут не будут работать другие методы, к примеру
+// el.style.background, el.style.color и тд.
+var counter = 0;
+function onclickButton(el) {
+    counter++;
+    el.innerHTML = "U have pressed this button " + counter;
+    // el.style.background = "red";
+    // el.style.color = "blue";
+    el.style.cssText = "border: 5px; border-radius: 50%; font-size: 20px; transition: 1s linear;"
+
+    console.log(counter);
+}
+//el.value получает элементы из инпут поля
+function onInput(el){
+    if (el.value == "Hello")
+        alert("Hi there!");
+    console.log(el.value);
+}
+
+//12.Управление HTML и обработка форм при помощи JS
+//Получаем тег с помощью getElementById и можем работать с данными тега text.id, text.title и т.д
+//Можно переназначить уже имеющий аттрибуты тега, text.title = "new title";и значение в теге перезапишется
+var text = document.getElementById('text');
+text.title = "New title";
+console.log(text.title);
+//text.style.сolor в этом методе после style используются css теги
+text.style.color = "red";
+//Если же в значении text.style.background-color идет, то необходимо в js коде прописать с большой буквы вместо
+//дефиса, т.е text.style.backgroundColor
+text.style.backgroundColor = "blue";
+//В теге text.innerHTML = " text <br> new"; работают другие теги
+text.innerHTML = "Simple <br> text";
+//Если нужно какое-то единственное значение из тега, вместо того, чтобы задавать переменную, нужно
+//прописать document.getElementById(text).color = "white" просто поставить точку и обратиться к методу
+document.getElementById('text').style.color = "pink";
+//Все это время мы получали информацию только из одного объекта по id, для того, чтобы получить информацию из
+//class и т.д мы получаем уже массив и перебираем его, даже если он имеет только одно значение
+//innerHTML позволяет не только менять значение внутри тега, но так же и получать существующее значение из тега
+// var spans = document.getElementsByTagName('span'); здесь получаем массив из названия тега
+var spans = document.getElementsByClassName('simple-text');
+for (i = 0; i < spans.length; i++) {
+    console.log(spans[i].innerHTML);
+}
+
+//Отправка и получение данных
+//Создаем name = document.getElementById('name').value; есть такой способ получить значение, а есть покороче
+//т.к мы находимся внутри формы в функции, то может обратить к ней таким образом var name = el.name.value;
+//AddEventListener добавляет событие, в скобках пишется какое именное событие без on, после запятой выбирается
+//фукнция
+document.getElementById('main-form').addEventListener("submit", checkForm);
+
+function checkForm(event) {
+    event.preventDefault();
+    el = document.getElementById('main-form');
+    var name = el.name.value;
+    var pass = el.pass.value;
+    var repass = el.repass.value;
+    var state = el.state.value;
+
+    var fail = "";
+
+    if ( name == "" || pass == "" || state == ""){
+        fail = "Значения не заполнены";
+    } else if (name.length <= 1 || name.length >=50){
+        fail = "Неправильное имя";
+    } else if (pass != repass){
+        fail = "Пароли не совпадают";
+    } else if (pass.split("&").length>1){
+        fail = "Некорректный пароль";
+    }
+    if (fail != ""){
+        document.getElementById('error').innerHTML = fail;
+
+    } else {
+        alert("Все данные введены верно");
+        window.location = 'https://itproger.com';
+    }
+}
+//13.Таймеры и интервалы
+//Таймеры выполняют код через определенное время
+//Интервалы выполняют код через определенное время, но без остановки
+//В интервалах первый параметр это название функции, а второй через сколько она будет работать, идет отсчет в
+//милисекундах, 1000мс = 1секунде
+//clearInterval останавливает интервал
+let id = setInterval(my_func, 1000);
+let i_counter = 0;
+function my_func() {
+    i_counter++;
+    console.log("Counter + : " + i_counter);
+    if (i_counter == 3){
+        clearInterval(id);
+    }
+}
+//Можно в интервале сразу создать новую функцию
+// setInterval(function (){
+//     i_counter++;
+//     console.log("Icounter + : " + i_counter);
+// }, 1000)
+//При создании таймера, setTimeout(указывается функция или ее название, указывается милисекунды)
+setTimeout(function (){
+    console.log("Timer is working!");
+}, 1000)
+
+
+//16.Создание объектов. Встроенные функции
+//Cоздаем объект Дата, у него есть встроенные функции к которым можно обратиться через точку
+var date = new Date();
+
+// console.log(date.getFullYear());
+//date.getMonth указывает месяц не с 1 числа, а с 0, как с массивами
+// console.log(date.getMonth() + 1);
+// console.log(date.getHours());
+// console.log(date.getMinutes());
+// console.log(date.getSeconds());
+//date.set устанавливает время в дате, а date.get получает дату
+date.setHours(23);
+date.setMinutes(23);
+console.log("Time is : " + date.getHours() + " : " + date.getMinutes());
+//arr.join отвечает за соединие данных в массиве в строку, в скобках указывается " (символ для добавления)"
+let massivarr = [100, 5, 6, 35, 7, 8];
+// console.log(massivarr.join(" : "));
+//arr.sort() сортирует в массиве значения по убыванию
+// console.log(massivarr.sort());
+//arr.reverse() меняет местами наоборот значения в  массиве
+var mstroka =  massivarr.reverse().join(", ");
+console.log(mstroka.split(", "));
+
+//Создание объектов и функции, классов
+//Создали класс Person, внутри прописываем construct(внутри скобок пишутся его параметры){ здесь задаем значения
+// параметрам this.name = name;} после можно создать функцию, которая обращается к классу
+class Person {
+    constructor(name, age, happiness) {
+        this.name = name;
+        this.age = age;
+        this.happiness = happiness;
+    }
+    info(){
+        console.log("Human being: " + this.name + ". " + "Age : " + this.age);
+    }
+}
+
+let Alex = new Person("Alex", 45, true);
+console.log(Alex.name + Alex.age+ Alex.happiness);
+Alex.info();

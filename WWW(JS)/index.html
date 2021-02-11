@@ -7,9 +7,54 @@
 <body>
 <!--  Noscript работает тогда, когда у пользователья отключен JS. -->
     <noscript>Включите JS!</noscript>
+<!--Можно вызвать функцию прямо в html коде, при вызове onclick, если нужно задать значение в строке, то необходимо
+прописать одинарные ковычки, чтобы не было ошибок-->
+<!--    <button onclick="alert('Vi najali na menia')">Click me</button> Этот способ не удобен тем, что надо
+писать большие коды в ряд и используется только в маленьких кодах-->
+<!--Чтобы вызвать функцию, надо прописать название функции со скобками-->
+<!--Onclick и другие события, могут вызываться практически во всех тегах-->
+<!--Ondlbclick событие происходит при двойном щелчке, onmouseover при наведении мышкой, onmouseout при отведении
+мышки, oninput удобен для набора текста, textarea, onload работает при загрузке тега (обычно его кладут в тег боди)
+-->
+<!--Внутри функции (this) означает, что будет еще и передан объект (<p><span>и тд),
+ т.е в этом случае будет передан button-->
+    <button name="Button" onclick="onclickButton(this)">Click ME</button>
+
+    <input oninput="onInput(this)" >
 <!--script в нем можно подключить сторонние скрипты, либо прописать JS код внутри тега, данный тег
  прописывается перед концом тега /body, считается хорошим тоном, т.к легче прогрузить html +css , потом
  уже скрипты-->
+
+    <p id="text" title="Simple text">Text</p>
+
+    <span class="simple-text">Text 1</span>
+    <span class="simple-text">Text 2</span>
+    <span class="simple-text">Text 3</span>
+
+<!--Изучение форм-->
+<!--form action, method отвечает за серверную часть, поэтому здесь они удалены-->
+<!--Здесь можно на button сделать обработчик onclick, но т.к это форма, будет логичнее сделать
+обработчик onsubmit, т.к в форме всегда есть кнопка submit-->
+<!--checkForm(document.getElementsByTagName('label') можно и таким способом получить информацию-->
+<!--Добавили method="post" потому что необходимо было выбрать другой метод получения данных,
+в onsubmit = "return checkForm(this)" можно прописать return и он возвращает значение из функции-->
+    <form id="main-form"  method="post">
+        <label for="name">Имя:</label>
+        <input type="text" name="name" placeholder="Имя" id="name"><br><br>
+        <label for="password">Пароль:</label>
+        <input type="password" name="pass" placeholder="Пароль" id="pass"><br><br>
+        <label for="repass">Проверка пароля:</label>
+        <input type="password" name="repass" placeholder="Проверка пароля" id="repass"><br><br>
+        <span>Пол:</span>
+        <input type="radio" name="state" id="male" value="Мужской">
+        <label for="male">Мужской</label>
+        <input type="radio" name="state" id="female" value="Женский">
+        <label for="female">Женский</label><br><br>
+        <span id="error"></span>
+        <input type="submit" name="submit" value="Готово">
+
+    </form>
+
     <script src="js/main.js">
     </script>
 </body>
